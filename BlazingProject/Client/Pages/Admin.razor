@@ -1,0 +1,84 @@
+﻿@page "/admin"
+@using BlazingProject.Shared.Models
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject JSRuntime JSRuntime
+@if (_MyContact == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else if (_MyContact.Count==0)
+{
+    <p><em>No hay datos para mostrar</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>LastNameMother</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in _MyContact)
+            {
+                <tr>
+                    <td>@contact.Matricula</td>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                    <td>@contact.LastNameMother</td>
+                    <td>@contact.Phone</td>
+                    <td>@contact.Email</td>
+                    <td>@contact.Subject</td>
+                    <td>@contact.Message</td>
+                    <td>
+                        <button class="btn btn-danger"
+                        @onclick="(() => Delete(contact.ID))">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    private List<ContactC> _MyContact;
+    protected override async Task OnInitializedAsync()
+    {
+        _MyContact = await Http.GetFromJsonAsync<List<ContactC>>("/api/ContactCs");
+    }
+    private async Task Delete(int id)
+    {
+        bool confirmed = await JSRuntime.InvokeAsync<bool>("confirmar", $"Deseas eliminar {_MyContact[id].Matricula}");
+        if (confirmed)
+        {
+            var result = await Http.DeleteAsync($"/api/ContactCs/{id}");
+            if (result != null && result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                await this.Http.GetFromJsonAsync<List<ContactC>>("/api/ContactCs");
+                
+            }
+            StateHasChanged();
+        }
+        //await Http.DeleteAsync($"/api/ContactCs/{id}");
+        //_MyContact = await Http.GetFromJsonAsync<List<ContactC>>("/api/ContactCs");
+        //StateHasChanged();
+    }
+    private void Edit(int id)
+    {
+        Navigation.NavigateTo($"/contact/edit/{id}");
+    }
+    private void Create()
+    {
+        Navigation.NavigateTo("/contact/create");
+    }
+}

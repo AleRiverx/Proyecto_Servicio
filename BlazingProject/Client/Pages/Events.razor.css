@@ -1,0 +1,23 @@
+﻿body {
+}
+#parrafos {
+    display: flex;
+}
+
+#pf-1 {
+    margin: 20px;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+#pf-2 {
+    margin: 20px;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+#pf-3 {
+    margin: 20px;
+    margin-top: 10px;
+    text-align: justify;
+}

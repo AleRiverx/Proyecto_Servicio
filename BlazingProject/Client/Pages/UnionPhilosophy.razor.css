@@ -1,0 +1,29 @@
+﻿body {
+}
+#Organigrama {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    color: white;
+    text-shadow: 2px 0px 0px #FFDF2B, 0px 2px 0px #FFDF2B, -1px 0px 0px #FFDF2B, 0px -1px 0px #FFDF2B;
+    text-align: center;
+}
+#Comision {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 48px;
+    text-align: center;
+    color: #FFDF2B;
+}
+#tercerParrafo {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #1D4355;
+    text-align:center;
+}
+.circulo {
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #5cb85c;
+}

@@ -1,0 +1,116 @@
+﻿@page "/contact/create"
+@using BlazingProject.Shared.Models
+@inject HttpClient Http
+@inject NavigationManager Navigation
+<h1>Contacto</h1>
+
+@if (flag == false)
+{
+    <div class="row">
+        <div class="col-3">
+            <div class="row">
+                <div class="col-md-5">
+                    <a href="https://www.facebook.com/people/UTP-Froc-Conlabor-Snpalm-Puebla/100091765523698/?locale=es_LA" target="_blank" type="button" class="btn btn-primary" id="facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                        </svg>
+                        <p>UTP-Froc Conlabor Snpalm Puebla</p>
+                    </a>
+                </div>
+                <div class="col-md-7">
+                    <img src="/images/imagen3.png" />
+                </div>
+            </div>
+            <div class="row">
+                <img src="/images/imagen3.png" />
+            </div>
+
+        </div>
+    </div>
+    <div class="container" id="colLogin">
+        <div class="row">
+            <div class="col">
+                <div class="text-start">
+                    <!--Login-->
+                    <EditForm Model="@_MyContact" OnValidSubmit="Post">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        <div class="mb-4">
+                            <label for="ID">ID</label>
+                            <InputText @bind-Value="_MyContact.Matricula" type="text" placeholder="Ingrese su ID" class="form-control" name="ID" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Correo</label>
+                            <InputText @bind-Value="_MyContact.Email" type="email" placeholder="Ingrese su correo" class="form-control" name="email" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="form-label">Telefono</label>
+                            <InputText @bind-Value="_MyContact.Phone" type="text" placeholder="Ingrese su telefono" class="form-control" name="phone" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="lastName" class="form-label">Apellido Paterno</label>
+                            <InputText @bind-Value="_MyContact.LastName" type="text" placeholder="Ingrese su apellido Paterno" class="form-control" name="lastName" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="lastNameMother" class="form-label">Apellido Materno</label>
+                            <InputText @bind-Value="_MyContact.LastNameMother" type="text" placeholder="Ingrese su apellido Materno" class="form-control" name="lastNameMother" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="firstName" class="form-label">Nombre</label>
+                            <InputText @bind-Value="_MyContact.FirstName" type="text" placeholder="Ingrese su nombre" class="form-control" name="firstName" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="form-label">Asunto</label>
+                            <InputText @bind-Value="_MyContact.Subject" type="text" placeholder="Asunto" class="form-control" name="subject" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Mensaje</label>
+                            <InputTextArea @bind-Value="_MyContact.Message" type="text" placeholder="" class="form-control" name="message" />
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn" id="btnSubmit">Enviar</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}else if (flag==true)
+{
+    
+}
+
+@code {
+    bool flag=false;
+    private ContactC _MyContact = new();
+    private async Task Post()
+    {
+        var res = await Http.PostAsJsonAsync<ContactC>("/api/ContactCs/", _MyContact);
+        //do
+        //{
+        //    flag = true;
+        //    if (flag==true)
+        //    {
+        //        //await Task.Delay(8000);
+        //        Navigation.NavigateTo("/");
+        //    }
+        //    flag = false;
+        //}
+        //while (res.IsSuccessStatusCode);
+        if (res.IsSuccessStatusCode)
+        {
+            //btnSubmit = "datos enviados";
+            //await Task.Delay(1000);
+            flag = true;
+            //await Task.Delay(2000);
+            //_MyContact = new();
+            //Navigation.NavigateTo("/contact/create");
+            //await Task.Delay(1000);
+
+        }
+        flag = false;
+        Navigation.NavigateTo("/");
+
+
+    }
+}

@@ -1,0 +1,138 @@
+﻿@page "/membership"
+@inject NavigationManager Navigation
+
+﻿<h1>Enviar correos electrónicos</h1>
+<form method="post">
+    <label>Destinatario: </label>
+    <input type="email" class="form-control" name="receptor" placeholder="Ejemplo: 'alguien@correo.com'" required />
+    <br />
+    <label>Asunto: </label>
+    <input type="text" class="form-control" name="asunto" placeholder="Asunto" required />
+    <br />
+    <label>Mensaje:</label>
+    <textarea name="texto" class="form-control" placeholder="Escribe tu mensaje"></textarea>
+    <br />
+    <button type="submit" class="btn btn-success">
+        Enviar correo
+    </button>
+</form>
+
+
+<form action="mailto:juandediosramirezh@gamil.com" method="post">
+    <label>name</label>
+    <input type="text" name="name" required>
+    <label>correo</label>
+    <input type="email" name="email" required>
+    <button type="submit">Send</button>
+</form>
+
+<form action="https://formsubmit.co/17d10c08539c48c7babfd1c3fb3de9c7" method="POST">
+    <input type="text" name="name" required>
+    <input type="email" name="email" required>
+    <button type="submit">Send</button>
+</form>
+
+@*
+<h3>Membership</h3>
+<div id="body">
+    <label>
+        Correo institucional
+    </label>
+    <InputText @bind-Value="Name"/>
+    <label>
+        Nombre o nombres
+    </label>
+    <input @bind="Name" />
+    <label>
+        Apellido Paterno
+    </label>
+    <input @bind="LastName" />
+
+
+</div>
+
+<div class="container" id="colLogin">
+    <div class="row">
+        <div class="col">
+            <div class="text-start">
+                <!--Login-->
+                <EditForm Model="" OnValidSubmit="Enviar">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="mb-4">
+                        <label for="ID">ID</label>
+                        <InputText @bind-Value="_MyContact.Matricula" type="text" placeholder="Ingrese su ID" class="form-control" name="ID" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Correo</label>
+                        <InputText @bind-Value="_MyContact.Email" type="email" placeholder="Ingrese su correo" class="form-control" name="email" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="form-label">Telefono</label>
+                        <InputText @bind-Value="_MyContact.Phone" type="text" placeholder="Ingrese su telefono" class="form-control" name="phone" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="lastName" class="form-label">Apellido Paterno</label>
+                        <InputText @bind-Value="_MyContact.LastName" type="text" placeholder="Ingrese su apellido Paterno" class="form-control" name="lastName" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="lastNameMother" class="form-label">Apellido Materno</label>
+                        <InputText @bind-Value="_MyContact.LastNameMother" type="text" placeholder="Ingrese su apellido Materno" class="form-control" name="lastNameMother" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="firstName" class="form-label">Nombre</label>
+                        <InputText @bind-Value="_MyContact.FirstName" type="text" placeholder="Ingrese su nombre" class="form-control" name="firstName" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="subject" class="form-label">Asunto</label>
+                        <InputText @bind-Value="_MyContact.Subject" type="text" placeholder="Asunto" class="form-control" name="subject" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="form-label">Mensaje</label>
+                        <InputTextArea @bind-Value="_MyContact.Message" type="text" placeholder="" class="form-control" name="message" />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn" id="btnSubmit">Enviar</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+*@
+
+@code {
+    /*
+    [Parameter]
+    public string Email {get;set; }
+    public string Name { get; set; }
+    public string LastName { get; set; }
+    public string LastNameMother { get; set; }
+    public string Genre { get; set; }
+    public string BirthDate { get; set; }
+    public string EmailSecond { get; set; }
+    public string Phone { get; set; }
+    public string UTPEntryDate { get; set; }//Fecha de ingreso a la UTP
+    public int ID { get; set; }
+    // Tipo de Contratación : se manejara con 2 radio butttons
+    public bool Quartely { get; set; }//Contrato determinado (cuatrimestral)
+    public bool Permanent { get; set; }//Contrato indeterminado (permanente)
+    //-----------------------------------------------
+    public string Position { get; set; }//Puesto (como se describe en tu recibo de pago)
+    //¿Tus funciones corresponden al puesto declarado en tu recibo? : se manejara con 2 radio butttons
+    public bool Yes { get; set; }
+    public bool Not { get; set; }
+    //--------------------------------------------------------------------------------------------------
+    public string NotAfter { get; set; }//En caso de que tu respuesta anterior sea No, ¿Qué puesto desempeñas?  En caso contrario  N/A
+    public string AreaDescription { get; set; }//Área de Adscripción especificada en tu recibo de pago
+    //Una vez aceptada mi afiliación, ME COMPROMETO a conocer el Contrato Colectivo.: se manejara con un radio button
+    public bool Acept { get; set; }
+
+    private void Enviar() => Navigation.NavigateTo("/");
+    */
+    private string Correo()
+    {
+        string email = "mailto:juandediosramirezh@gamil.com";
+        return email;
+    }
+}

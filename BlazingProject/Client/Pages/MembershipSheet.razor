@@ -1,0 +1,61 @@
+﻿@page "/membershipsheet"
+
+@inject IJSRuntime JS //runtime de la funcion de index.html //
+@inject NavigationManager NavigationManager
+
+<h3>MembershipSheet</h3>
+
+
+<head>
+    
+</head>
+<section id="membership">
+    <h1>Formato de afiliación.</h1>
+    <h2>Ingrese los datos a continación.</h2>
+</section>
+<section id="afiliacion">
+    <div>
+        <p>Nombre completo:</p>
+        <input type="text" @bind-value="name">
+        <br />
+        <br />
+        <p>CURP:</p>
+        <input type="text" @bind-value="curp">
+    </div>
+    <br />
+    <br />
+    <div>
+        <h3>Descargar la hoja de afiliación.</h3>
+       @* <button class="btn btn-primary" @onclick="GeneratePDF">Descargar</button>*@
+    </div>
+    <br />
+
+    <button class="btn btn-outline-success" data-toggle="tooltip" title="Exportar" @onclick="(()=> export())">Generar PDF</button>
+
+</section>
+
+
+@code {
+
+    public string name { get; set; }
+    public string curp { get; set; }
+
+    private string title = "";
+
+    public void GetData()
+    {
+
+    }
+
+
+    private async Task export()
+    {
+        string name = "";
+        await JS.InvokeVoidAsync("GenerarPdf", name);
+    }
+
+    private void GoToIndex() //Navegar al llenado del formulario
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

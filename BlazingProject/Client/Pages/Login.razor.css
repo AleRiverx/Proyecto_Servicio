@@ -1,0 +1,14 @@
+﻿body {
+}
+#btnSubmit {
+    background: rgb(241,212,0);
+    background: linear-gradient(0deg, rgba(241,212,0,1) 0%, rgba(226,154,0,1) 70%);
+}
+#colLogin{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+h2{
+    text-align:center;
+}

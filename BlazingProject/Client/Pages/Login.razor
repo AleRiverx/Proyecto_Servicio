@@ -1,0 +1,30 @@
+﻿@page "/login"
+<div class="container" id="colLogin">
+    <div class="row">
+        <div class="col" >
+            <div class="text-start">
+                <!--Login-->
+                <form action="#">
+                    <h2>Acceder</h2>
+                    <div class="mb-4">
+                        <label for="email" class="form-label text-start">Correo Institucional</label>
+                        <input type="email" placeholder="Ingrese su correo" class="form-control" name="email" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" placeholder="Ingrese su contraseña" class="form-control" name="password" />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn" id="btnSubmit">Iniciar Sesión</button>
+                    </div>
+                    <div class="my-3">
+                        <span > <a href="/">Recuperar Contraseña</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+}
