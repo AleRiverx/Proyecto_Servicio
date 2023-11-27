@@ -1,0 +1,43 @@
+# Nombre del archivo: .github/workflows/main.yml
+
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1'
+
+    - name: Build and Test
+      run: |
+        dotnet build -c Release
+        dotnet test
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1'
+
+    - name: Publish Blazor Server App
+      run: |
+        dotnet publish -c Release -r win-x64 -o publish_output
+        # Puedes agregar comandos adicionales para desplegar en tu entorno específico
